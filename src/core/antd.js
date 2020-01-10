@@ -10,7 +10,7 @@ React.Component.prototype.$toast=Toast.info;
 React.Component.prototype.$loading=function (content) {
     Toast.loading(content,0);
 };
-React.Component.prototype.$hideLoading=function(){
+React.Component.prototype.$clear=function(){
     Toast.hide();
 }
 React.Component.prototype.$Toast=Toast;

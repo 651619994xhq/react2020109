@@ -10,7 +10,7 @@ class Login extends Component{
         console.log(this.props)
         // this.$loading({content:'loading'});
         //  console.log(this.$loading);
-        // this.$loading('',0)
+        this.$loading('',0)
         // setTimeout(()=>{
         //     this.$hideLoading();
         // },3000)
