@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import {encodeQuery} from "@lib/utils";
+import styles from './login.module.scss';
 
 class Login extends Component{
     constructor(props){
@@ -20,7 +21,7 @@ class Login extends Component{
         // this.$toast('244423423')
     }
     render() {
-        return (<div onClick={this.handleClick}>
+        return (<div className={styles.abc} onClick={this.handleClick}>
                 this is login page
             </div>
         )
