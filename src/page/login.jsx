@@ -1,6 +1,11 @@
 import React,{Component} from "react";
 import {encodeQuery} from "@lib/utils";
 import styles from './login.module.scss';
+//目前react写css 大概3种方式
+//1.css in js 这种更像js 写法
+//2.css-module 侵入性更小一点
+//3.模块命名法解决
+//本人更偏向于css-module
 
 class Login extends Component{
     constructor(props){
