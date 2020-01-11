@@ -86,8 +86,8 @@ module.exports = function(webpackEnv) {
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
-  // common function to get style loaders
-  const getStyleLoaders = (cssOptions, preProcessor) => {
+  // common function to get style loaders // xhq 2020/01/22 这里加了options 的参数 主要是加载scss全局变量用的
+  const getStyleLoaders = (cssOptions, preProcessor,options) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
       isEnvProduction && {
@@ -165,6 +165,10 @@ module.exports = function(webpackEnv) {
           },
         }
       );
+    // xhq 2020/01/11 这里增加了配置
+      if(options){
+        loaders.push(...options);
+      }
     }
     return loaders;
   };
@@ -503,7 +507,15 @@ module.exports = function(webpackEnv) {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'sass-loader'
+                'sass-loader',
+                    // xhq 2020/01/11 这里导入了全局变量 利用sass-resources-loader
+                    [{
+                  loader: require.resolve('sass-resources-loader'),
+                  options: {
+                    resources: path.resolve(__dirname,'../src/common/css/var.scss')
+                  }
+                }
+                    ]
               ),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -523,7 +535,15 @@ module.exports = function(webpackEnv) {
                     getLocalIdent: getCSSModuleLocalIdent,
                   },
                 },
-                'sass-loader'
+                'sass-loader',
+                  // xhq 2020/01/11 这里导入了全局变量 利用sass-resources-loader
+                  [{
+                    loader: require.resolve('sass-resources-loader'),
+                    options: {
+                      resources: path.resolve(__dirname,'../src/common/css/var.scss')
+                    }
+                  }
+                  ]
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.

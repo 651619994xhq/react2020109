@@ -6,7 +6,7 @@ import {   HashRouter,
     Link,
     Switch,
     withRouter, } from 'react-router-dom'
-import '@/App.css';
+import '@/App.scss';
 import {login,exitLogin} from '@/redux/actions/userStatusAction'
 import routers from "./router";
 
