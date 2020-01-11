@@ -1,6 +1,7 @@
 import React,{Component}  from 'react';
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
+import  {CSSTransition,TransitionGroup} from "react-transition-group";
 import {   HashRouter,
     Route,
     Link,
@@ -10,7 +11,45 @@ import '@/App.scss';
 import {login,exitLogin} from '@/redux/actions/userStatusAction'
 import routers from "./router";
 
+const ANIMATION_MAP = {
+    PUSH: 'forward',
+    POP: 'back'
+}
+
 //在这里可以直接引入store store.dispatch('event1')
+const Routes=withRouter(({location,history})=>{
+
+    return (
+        <TransitionGroup
+            className={'router-wrapper'}
+            childFactory={child => React.cloneElement(
+                child,
+                {classNames: ANIMATION_MAP[history.action]}
+            )}
+        >
+            <CSSTransition
+                timeout={500}
+                key={location.pathname}
+            >
+                <Switch location={location}>
+                    {
+                        routers.map((route,index) => {
+                            return(
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    exact={route.exact}
+                                    component={route.component}/>
+                            )
+                        })
+                    }
+                </Switch>
+            </CSSTransition>
+        </TransitionGroup>
+    )
+
+})
+
 class App extends Component{
   constructor(props){
     super(props);
@@ -40,24 +79,9 @@ class App extends Component{
   render() {
       // console.log('props==>',this.props);
       return  (
-          <div className="App">
-
               <HashRouter>
-                      <Switch>
-                          {
-                              routers.map((route,index) => {
-                                  return(
-                                      <Route
-                                          key={index}
-                                          path={route.path}
-                                          exact={route.exact}
-                                          component={route.component}/>
-                                  )
-                              })
-                          }
-                      </Switch>
+                  <Routes></Routes>
               </HashRouter>
-          </div>
       );
 
   }

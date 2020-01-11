@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import {Button} from 'antd-mobile';
 import {encodeQuery} from "@lib/utils";
 import styles from './index.module.scss';
 import {CS} from '@/lib/helper';
@@ -13,23 +14,30 @@ class Login extends Component{
     constructor(props){
         super(props);
     }
+    componentDidMount() {
+        console.log('login is run');
+    }
+    componentWillUnmount(){
+
+    }
+
     handleClick=()=>{
-        console.log('this is A ',this);
-        console.log(this.props)
+        // console.log('this is A ',this);
+        // console.log(this.props)
         // this.$loading({content:'loading'});
         //  console.log(this.$loading);
-        this.$loading('',0)
+        // this.$loading('',0)
         // setTimeout(()=>{
         //     this.$hideLoading();
         // },3000)
-        // this.props.history.push({ pathname : '/home',search:encodeQuery({a:123}) })
+        this.props.history.push({ pathname : '/home',search:encodeQuery({a:123}) })
         // this.props.history.push({ pathname : '/detail/bus',query:encodeQuery({a:123}) })
         // this.props.history.push({ pathname : '/detail/bus',state:encodeQuery({a:123}) })
         // this.$toast('244423423')
     }
     render() {
-        return (<div className={styles.abc} onClick={this.handleClick}>
-                this is login page
+        return (<div className={cs.m('container')} >
+                <Button type="warning" size="small" style={{width:'100px',margin:'20px auto'}} onClick={this.handleClick}>登录</Button>
             </div>
         )
     }
