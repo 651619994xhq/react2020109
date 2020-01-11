@@ -343,6 +343,7 @@ module.exports = function(webpackEnv) {
         '@page':path.resolve(process.cwd(),'./src/page'),
         '@redux':path.resolve(process.cwd(),'./src/redux'),
         '@lib':path.resolve(process.cwd(),'./src/lib'),
+        '@image':path.resolve(process.cwd(),'./src/image')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
