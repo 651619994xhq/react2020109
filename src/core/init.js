@@ -5,8 +5,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
-import './antd';
 import FastClick from 'fastclick';
+import '@/common/css/base.scss'
+import './antd';
 import '@/index.css';
 import App from '@/App';
 import store from '@/redux/index'

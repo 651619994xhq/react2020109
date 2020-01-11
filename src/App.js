@@ -43,7 +43,6 @@ class App extends Component{
           <div className="App">
 
               <HashRouter>
-                  <main>
                       <Switch>
                           {
                               routers.map((route,index) => {
@@ -57,7 +56,6 @@ class App extends Component{
                               })
                           }
                       </Switch>
-                  </main>
               </HashRouter>
           </div>
       );

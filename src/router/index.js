@@ -3,8 +3,8 @@
  */
 import Loadable from 'react-loadable'; //这个是对路由懒加载
 
-const loadable = (filename) =>Loadable({
-    loader: ()=> import(`@page/${filename}`),
+const loadable = (dirname) =>Loadable({
+    loader: ()=> import(`@page/${dirname}/index.jsx`),
     loading:() => ('')
 })
 
@@ -14,13 +14,17 @@ const routers=[
         exact:true,
         component:loadable('login')
     },
-    {
-        path:'/detail',
-        component:loadable('detail'),
-    },
+    // {
+    //     path:'/detail',
+    //     component:loadable('detail'),
+    // },
     {
         path:'/home',
         component:loadable('home')
+    },
+    {
+        path:'/mine',
+        component:loadable('mine')
     }
 ]
 
