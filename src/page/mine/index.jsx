@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import styles from './index.module.scss';
 import {CS} from '@/lib/helper';
+import Dialog from "../../components/dialog";
 
 let cs = new CS(styles);
 
@@ -9,12 +10,19 @@ class Mine extends Component {
         userInfo: {
             nickName: 'xhq',
             code: 10001001
-        }
+        },
+        isShowDialog:false,
+        text:''
     }
     handleGoToPage=(path)=>{
-       this.props.history.push({
-           pathname:path
-       })
+       // this.props.history.push({
+       //     pathname:path
+       // })
+        this.setState({isShowDialog: !this.state.isShowDialog,text:Math.random()});
+    }
+    handleCloseDialog=(value)=>{
+        console.log(value);
+        this.setState({isShowDialog: !this.state.isShowDialog});
     }
 
     render() {
@@ -75,6 +83,13 @@ class Mine extends Component {
                         </div>
                     </div>
                 </div>
+
+
+                {this.state.isShowDialog&&
+                (<Dialog text={this.state.text} handleCloseDialog={this.handleCloseDialog}>
+                    我是孩子
+                </Dialog>)
+                }
 
 
             </div>

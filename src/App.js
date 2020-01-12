@@ -23,10 +23,10 @@ const Routes=withRouter(({location,history})=>{
     let pathname=location.pathname
     let isNotAnimation=false;
     let timeout=500;
-    if((pathname=='/detail/bus'||pathname=='/detail/car')&&history.action!='REPLACE'){
-        isNotAnimation=true;
-        timeout=0;
-    }
+    // if((pathname=='/detail/bus'||pathname=='/detail/car')&&history.action!='REPLACE'){
+    //     isNotAnimation=true;
+    //     timeout=0;
+    // }
     return (
         <TransitionGroup
             className={'router-wrapper'}
