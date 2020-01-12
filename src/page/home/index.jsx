@@ -18,9 +18,13 @@ class Home extends Component{
         // this.props.history.push({pathname:'/detail'})
         this.props.history.goBack();
     }
+    handleGoToDetail=()=>{
+        this.props.history.push('/detail')
+    }
     render() {
         return (<div className={cs.m('container')}>
                 <Button size="small" type="primary" onClick={this.handleClick} style={{width:'100px',margin:'20px auto'}}>返回</Button>
+                <Button size="small" type="primary" onClick={this.handleGoToDetail} style={{width:'100px',margin:'20px auto'}}>详情页</Button>
             </div>
         )
     }

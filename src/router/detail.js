@@ -8,12 +8,10 @@ const loadable = (filename) =>Loadable({
 const routers=[
     {
         path:'/detail/bus',
-        exact:true,
         component:loadable('bus')
     },
     {
         path:'/detail/car',
-        exact:true,
         component:loadable('car'),
     }
 ]

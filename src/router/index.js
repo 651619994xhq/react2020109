@@ -30,7 +30,8 @@ const routers=[
     {
         path:'/detail',
         component:loadable('detail')
-    }
+    },
+
 ]
 
 export default routers;

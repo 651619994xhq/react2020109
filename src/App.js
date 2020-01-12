@@ -13,22 +13,30 @@ import routers from "./router";
 
 const ANIMATION_MAP = {
     PUSH: 'forward',
-    POP: 'back'
+    POP: 'back',
+    REPLACE:'forward'
 }
 
 //在这里可以直接引入store store.dispatch('event1')
 const Routes=withRouter(({location,history})=>{
-
+    console.log('history==>',history);
+    let pathname=location.pathname
+    let isNotAnimation=false;
+    let timeout=500;
+    if((pathname=='/detail/bus'||pathname=='/detail/car')&&history.action!='REPLACE'){
+        isNotAnimation=true;
+        timeout=0;
+    }
     return (
         <TransitionGroup
             className={'router-wrapper'}
             childFactory={child => React.cloneElement(
                 child,
-                {classNames: ANIMATION_MAP[history.action]}
+                {classNames: isNotAnimation?'':ANIMATION_MAP[history.action]}
             )}
         >
             <CSSTransition
-                timeout={500}
+                timeout={timeout}
                 key={location.pathname}
             >
                 <Switch location={location}>

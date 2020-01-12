@@ -5,7 +5,6 @@ class Bus extends Component{
     }
     componentDidMount() {
         console.log('bus is run')
-
         console.log(this.props)
     }
 

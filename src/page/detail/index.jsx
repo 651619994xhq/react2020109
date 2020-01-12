@@ -14,16 +14,21 @@ class Detail extends Component{
         super(props);
     }
     componentDidMount() {
+        console.log('detail is run');
 
     }
     handleGoToPage(pathname){
         this.props.history.push(pathname)
     }
+    handleBackPage=()=>{
+        this.props.history.goBack();
+    }
 
     render() {
-        return (<div>
+        return (<div className={'container'}>
                 <Button size="small" type="primary"  style={{width:'100px',margin:'20px auto'}} onClick={this.handleGoToPage.bind(this,'/detail/bus')}>bus</Button>
                 <Button size="small" type="warning" style={{width:'100px',margin:'20px auto'}} onClick={this.handleGoToPage.bind(this,'/detail/car')}>car</Button>
+                <Button size="small" type="warning" style={{width:'100px',margin:'20px auto'}} onClick={this.handleBackPage}>返回</Button>
             <Switch>
                 {
                     routers.map((route,index) => {
@@ -36,6 +41,11 @@ class Detail extends Component{
                         )
                     })
                 }
+                <Redirect
+                    to={{
+                        pathname: "/detail/bus",
+                    }}
+                />
             </Switch>
             </div>
         )
