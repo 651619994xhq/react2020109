@@ -25,29 +25,30 @@ class Detail extends Component{
     }
 
     render() {
-        return (<div className={'container'}>
+        return (<div className={'container'} style={{background:'purple'}}>
                 <Button size="small" type="primary"  style={{width:'100px',margin:'20px auto'}} onClick={this.handleGoToPage.bind(this,'/detail/bus')}>bus</Button>
                 <Button size="small" type="warning" style={{width:'100px',margin:'20px auto'}} onClick={this.handleGoToPage.bind(this,'/detail/car')}>car</Button>
                 <Button size="small" type="warning" style={{width:'100px',margin:'20px auto'}} onClick={()=>this.props.history.push('/home')}>跳转到home页</Button>
                 <Button size="small" type="warning" style={{width:'100px',margin:'20px auto'}} onClick={this.handleBackPage}>返回</Button>
-            <Switch>
-                {
-                    routers.map((route,index) => {
-                        return(
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                component={route.component}/>
-                        )
-                    })
-                }
-                <Redirect
-                    to={{
-                        pathname: "/detail/bus",
-                    }}
-                />
-            </Switch>
+            {/*<Switch>*/}
+            {/*    {*/}
+            {/*        routers.map((route,index) => {*/}
+            {/*            return(*/}
+            {/*                <Route*/}
+            {/*                    key={index}*/}
+            {/*                    path={route.path}*/}
+            {/*                    exact={route.exact}*/}
+            {/*                    component={route.component}/>*/}
+            {/*            )*/}
+            {/*        })*/}
+            {/*    }*/}
+            {/*    <Redirect*/}
+            {/*        push*/}
+            {/*        to={{*/}
+            {/*            pathname: "/detail/bus",*/}
+            {/*        }}*/}
+            {/*    />*/}
+            {/*</Switch>*/}
             </div>
         )
     }

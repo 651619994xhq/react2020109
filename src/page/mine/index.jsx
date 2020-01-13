@@ -87,7 +87,7 @@ class Mine extends Component {
 
                 {this.state.isShowDialog&&
                 (<Dialog text={this.state.text} handleCloseDialog={this.handleCloseDialog}>
-                    我是孩子
+                    我是children
                 </Dialog>)
                 }
 

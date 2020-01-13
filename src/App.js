@@ -9,39 +9,50 @@ import {   HashRouter,
     withRouter, } from 'react-router-dom'
 import '@/App.scss';
 import {login,exitLogin} from '@/redux/actions/userStatusAction'
-import routers from "./router";
+import RouterConfig from "./router";
+const DEFAULT_SCENE_CONFIG = {
+    enter: 'from-right',
+    exit: 'to-exit'
+};
+// const DEFAULT_SCENE_CONFIG = {
+//     enter: '',
+//     exit: '',
+//     index:1
+// };
 
-const ANIMATION_MAP = {
-    PUSH: 'forward',
-    POP: 'back',
-    REPLACE:'forward'
-}
+const getSceneConfig = location => {
+    const matchedRoute = RouterConfig.find(config => new RegExp(`^${config.path}$`).test(location.pathname));
+    return (matchedRoute && matchedRoute.sceneConfig) || DEFAULT_SCENE_CONFIG;
+};
 
-//在这里可以直接引入store store.dispatch('event1')
+let oldLocation=null; //老的路由信息
 const Routes=withRouter(({location,history})=>{
-    console.log('history==>',history);
-    let pathname=location.pathname
-    let isNotAnimation=false;
-    let timeout=500;
-    // if((pathname=='/detail/bus'||pathname=='/detail/car')&&history.action!='REPLACE'){
-    //     isNotAnimation=true;
-    //     timeout=0;
-    // }
+    // 转场动画应该都是采用当前页面的sceneConfig，所以：
+    // push操作时，用新location匹配的路由sceneConfig
+    // pop操作时，用旧location匹配的路由sceneConfig
+    let classNames = '';
+    if(history.action === 'PUSH') {
+        classNames = 'forward-' + getSceneConfig(location).enter;
+    } else if(history.action === 'POP' && oldLocation) {
+        classNames = 'back-' + getSceneConfig(oldLocation).exit;
+    }
+    oldLocation = location;
+
     return (
         <TransitionGroup
             className={'router-wrapper'}
             childFactory={child => React.cloneElement(
                 child,
-                {classNames: isNotAnimation?'':ANIMATION_MAP[history.action]}
+                {classNames: classNames}
             )}
         >
             <CSSTransition
-                timeout={timeout}
+                timeout={500}
                 key={location.pathname}
             >
                 <Switch location={location}>
                     {
-                        routers.map((route,index) => {
+                        RouterConfig.map((route,index) => {
                             return(
                                 <Route
                                     key={index}
