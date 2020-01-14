@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author:  bean^ <bean_4@163.com>
+ * @Date: 2020-01-14 11:33:38
+ * @LastEditors  :  bean^ <bean_4@163.com>
+ * @LastEditTime : 2020-01-14 12:19:36
+ */
 /**
  * @description 这是路由文件
  */
@@ -14,7 +21,7 @@ import login from '@page/login/index.jsx';
 import home from '@page/home/index.jsx';
 import detail from '@page/detail/index.jsx';
 import mine from '@page/mine/index.jsx';
-
+import detailRouter from './detail'
 
 // const routers=[
 //     {
@@ -45,8 +52,8 @@ const routers = [
         path: '/login',
         exact: true,
         component: login,
-        sceneConfig:{
-            index:2
+        sceneConfig: {
+            index: 2
         }
     },
     {
@@ -56,7 +63,7 @@ const routers = [
         sceneConfig: {
             enter: 'from-bottom',
             exit: 'to-bottom',
-            index:3
+            index: 3
         }
     },
     {
@@ -66,7 +73,7 @@ const routers = [
         sceneConfig: {
             enter: 'from-right',
             exit: 'to-right',
-            index:4
+            index: 4
         }
     },
     {
@@ -76,9 +83,10 @@ const routers = [
         sceneConfig: {
             enter: 'from-right',
             exit: 'to-right',
-            index:5
+            index: 5
         }
-    }
+    },
+    ...detailRouter
 ];
 
 export default routers;
